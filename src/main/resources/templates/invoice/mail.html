@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Thank you for your order</title>
+    </head>
+
+    <body style="margin:0; padding:0; background-color:#f4f6f8; font-family:Arial, Helvetica, sans-serif; color:#243044;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+               style="background-color:#f4f6f8;">
+            <tr>
+                <td align="center" style="padding:32px 16px;">
+                    <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0"
+                           style="width:100%; max-width:600px; background:#ffffff; border-radius:12px; overflow:hidden;">
+
+                        <tr>
+                            <td style="padding:28px 36px; background:#173b35; color:#ffffff;">
+                                <div style="font-size:22px; font-weight:bold;" th:text="${shopLabel}">AZNA Shop</div>
+                                <div style="font-size:13px; margin-top:6px; color:#dce9e4;">Order confirmation and invoice
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding:36px 36px 20px;">
+                                <p style="margin:0 0 14px; font-size:24px; font-weight:bold;">Thank you for your order!</p>
+                                <p style="margin:0; font-size:15px; line-height:1.7; color:#596579;">
+                                    Thank you for shopping with us! We are thrilled to let you know that your order has been successfully processed. Below you will find your official invoice and order details.
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding:8px 36px 24px;">
+                                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+                                       style="background:#f7f9f8; border-radius:8px;">
+                                    <tr>
+                                        <td style="padding:18px 20px; font-size:14px; line-height:1.8;">
+                                            <strong>Order number:</strong> <span th:text="${orderNumber}">[Order Number]</span><br/>
+                                            <strong>Order date:</strong> <span th:text="${date}">[Order Date]</span><br/>
+                                            <strong>Cashier:</strong> <span th:text="${cashierName}">[Cashier]</span><br/>
+                                            <strong>Total Price:</strong> <span th:text="${totalAllPrice}">[Total Price]</span><br/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding:0 36px;">
+                                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                    <tr>
+                                        <th align="left"
+                                            style="padding:12px 8px; border-bottom:2px solid #e8ecea; font-size:13px; color:#596579;">
+                                            ITEM</th>
+                                        <th align="center"
+                                            style="padding:12px 8px; border-bottom:2px solid #e8ecea; font-size:13px; color:#596579;">
+                                            QTY</th>
+                                        <th align="right"
+                                            style="padding:12px 8px; border-bottom:2px solid #e8ecea; font-size:13px; color:#596579;">
+                                            PRICE</th>
+                                    </tr>
+                                    <tr th:each="item : ${items}">
+                                        <td th:text="${item.productName}"
+                                            style="padding:16px 8px; border-bottom:1px solid #edf0ef; font-size:14px;">
+                                            [Product Name]</td>
+                                        <td align="center" th:text="${item.totalItem}"
+                                            style="padding:16px 8px; border-bottom:1px solid #edf0ef; font-size:14px;">
+                                            [Quantity]</td>
+                                        <td align="right" th:text="${item.sumTotalAllItemPriceWithCurrency}"
+                                            style="padding:16px 8px; border-bottom:1px solid #edf0ef; font-size:14px;">
+                                            [Price]</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding:20px 36px 28px;">
+                                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                    <tr>
+                                        <td align="right" style="padding:5px 0; font-size:14px; color:#596579;">Total Price
+                                        </td>
+                                        <td align="right" width="120" style="padding:5px 0; font-size:14px;" th:text="${totalAllPrice}">[Subtotal]</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" style="padding:5px 0; font-size:14px; color:#596579;">Total Paid
+                                        </td>
+                                        <td align="right" style="padding:5px 0; font-size:14px;" th:text="${paidByCustomer}">[Shipping]</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"
+                                            style="padding:14px 0 0; border-top:1px solid #e8ecea; font-size:17px; font-weight:bold;">
+                                            Change</td>
+                                        <td align="right"
+                                            style="padding:14px 0 0; border-top:1px solid #e8ecea; font-size:17px; font-weight:bold; color:#173b35;" th:text="${change}">
+                                            [Total]</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                    style="padding:24px 36px; background:#f7f9f8; font-size:14px; line-height:1.7; color:#596579;">
+                                Thank you very much for shopping with us. We hope you love your purchase!<br/>
+                                <strong style="color:#243044;">Warmly,<br/>The <span th:text="${shopLabel}">[Your Shop Name]</span> Team</strong>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td align="center" style="padding:22px 30px; font-size:12px; line-height:1.6; color:#7b8491;">
+                                <strong>Please do not reply to this email.</strong>
+                                <br/><br/>
+                                <span th:text="${shopName}">[Your Shop Name]</span> · <span th:text="${shopAddress}">[Business Address]</span> · <span th:text="${shopPhoneNumber}">[Business Phone Number]</span>
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+
+</html>

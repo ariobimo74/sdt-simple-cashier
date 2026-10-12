@@ -1,0 +1,35 @@
+server:
+  port: 8082
+#============================================================================
+# SPRING
+#============================================================================
+spring:
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: lazy
+  profiles:
+    active: dev
+  application:
+    name: cms-dashboard-web
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${db.host}:${db.port}/${db.name}
+    username: ${db.username}
+    password: ${db.password}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate     # Hibernate ddl auto (create, create-drop, validate, update)
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Invoice</title>
+
+        <style>
+            @page {
+                size: A4;
+                margin: 20mm;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                font-size: 14px;
+            }
+
+            .container {
+                width: 100%;
+            }
+
+            .header {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+
+            .header h1 {
+                margin: 0;
+                font-size: 28px;
+            }
+
+            .header p {
+                margin: 4px 0;
+                color: #666;
+            }
+
+            .info {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .info td {
+                padding: 4px 0;
+            }
+
+            .label {
+                font-weight: bold;
+                width: 180px;
+            }
+
+            table.items {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 15px;
+            }
+
+            table.items th {
+                background: #f4f4f4;
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: left;
+            }
+
+            table.items td {
+                border: 1px solid #ddd;
+                padding: 10px;
+            }
+
+            table.items th:nth-child(2),
+            table.items td:nth-child(2),
+            table.items th:nth-child(3),
+            table.items td:nth-child(3),
+            table.items th:nth-child(4),
+            table.items td:nth-child(4) {
+                text-align: right;
+            }
+
+            .summary {
+                width: 350px;
+                margin-left: auto;
+                margin-top: 25px;
+                border-collapse: collapse;
+            }
+
+            .summary td {
+                padding: 8px;
+            }
+
+            .summary tr:last-child {
+                font-size: 16px;
+                font-weight: bold;
+                border-top: 2px solid #333;
+            }
+
+            .footer {
+                text-align: center;
+                margin-top: 50px;
+                color: #777;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>INVOICE</h1>
+                <p th:text="${shopLabel}">Azna Store</p>
+            </div>
+
+            <table class="info">
+                <tr>
+                    <td class="label">Order Number</td>
+                    <td th:text="${orderNumber}"></td>
+                </tr>
+                <tr>
+                    <td class="label">Date</td>
+                    <td th:text="${date}"></td>
+                </tr>
+                <tr>
+                    <td class="label">Cashier</td>
+                    <td th:text="${cashierName}"></td>
+                </tr>
+                <tr>
+                    <td class="label">Payment Method</td>
+                    <td th:text="${paymentMethod}"></td>
+                </tr>
+            </table>
+
+            <table class="items">
+                <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Unit Price</th>
+                    <th>Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${items}">
+                    <td th:text="${item.productName}"></td>
+                    <td th:text="${item.totalItem}"></td>
+                    <td th:text="${item.currentPricePerItemUnitWithCurrency}"></td>
+                    <td th:text="${item.sumTotalAllItemPriceWithCurrency}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="summary">
+                <tr>
+                    <td>Total</td>
+                    <td style="text-align:right;"
+                        th:text="${totalAllPrice}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Paid</td>
+                    <td style="text-align:right;"
+                        th:text="${paidByCustomer}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Change</td>
+                    <td style="text-align:right;"
+                        th:text="${change}">
+                    </td>
+                </tr>
+
+            </table>
+            <div class="footer">
+                Thank you for your purchase!<br/>
+                Please keep this invoice for your records.
+                <br/><br/>
+                <p>
+                    <span th:text="${shopName}">
+                        PT. Azna Shopping Indonesia
+                    </span>
+                    ·
+                    <span th:text="${shopAddress}">
+                        PT. Azna Shopping Indonesia
+                    </span>
+                    ·
+                    <span th:text="${shopPhoneNumber}">
+                        089876543210
+                    </span>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

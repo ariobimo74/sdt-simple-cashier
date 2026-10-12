@@ -1,0 +1,1 @@
+ALTER TABLE master_authentication.user_profile DROP COLUMN allergy;

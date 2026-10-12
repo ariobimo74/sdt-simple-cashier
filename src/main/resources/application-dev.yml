@@ -1,0 +1,19 @@
+#============================================================================
+# DATABASE
+#============================================================================
+db:
+  name: shops
+  host: localhost
+  port: 5432
+  username: sdt_service
+  password: SDTService123
+  auto-reconnect: true
+  ssl: false
+
+#============================================================================
+# FLYWAY
+#============================================================================
+flyway:
+  url: jdbc:postgresql://${db.host}:${db.port}/${db.name}
+  user: sdt_service
+  password: SDTService123

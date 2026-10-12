@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            td {
+                vertical-align: middle !important;
+            }
+        </style>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Order</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- MetisMenu CSS -->
+        <link href="../css/metisMenu.min.css" rel="stylesheet">
+
+        <!-- DataTables CSS -->
+        <link href="../css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="../css/dataTables/dataTables.responsive.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="../css/startmin.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <label class="navbar-brand" >Simple Cashier</label>
+            </div>
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <ul class="nav navbar-nav navbar-right navbar-top-links">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                        <i class="fa fa-user fa-fw"></i> <span id="navUser"></span> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <aside class="sidebar navbar-default" role="navigation">
+            <div class="sidebar-nav navbar-collapse active">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <label id="greetingName">Hello, there!</label>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <div id="wrapper">
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <!-- panel -->
+                                <div class="panel tabbed-panel panel-primary">
+                                    <div class="panel-heading clearfix">
+                                        <div class="panel-title pull-left">Order</div>
+                                        <div class="pull-right">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tab-primary-1" data-toggle="tab">Product Order</a></li>
+                                                <li><a href="#tab-primary-2" data-toggle="tab">Checkout Result</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade in active" id="tab-primary-1">
+                                                <!-- /.row -->
+                                                <div class="row">
+                                                    <div class="table-responsive">
+                                                        <center>
+                                                            <table class="table table-striped table-bordered table-hover" id="product-order-dataTables" style="text-align: left; vertical-align: middle;">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>No.</th>
+                                                                    <th>Image</th>
+                                                                    <th>Product Name</th>
+                                                                    <th>Product Code</th>
+                                                                    <th>Stock</th>
+                                                                    <th>Price per unit</th>
+                                                                    <th>Add to Checkout</th>
+                                                                </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                            <div class="tab-pane fade" id="tab-primary-2">
+                                                <!-- /.row -->
+                                                <div class="row">
+                                                    <div style="text-align: right; margin-right: 1%; margin-bottom: 1%">
+                                                        <button class="btn btn-primary" id="checkoutBtn"><i class="fa fa-shopping-bag fa-fw"></i> Checkout</button>
+                                                    </div>
+                                                    <div style="text-align: right; margin-right: 1%; margin-bottom: 1%">
+                                                        <label style="text-align: left; margin-right: 1%; margin-bottom: 1%">Total Items : <span id="totalItem"></span></label>
+                                                    </div>
+                                                    <div style="text-align: right; margin-right: 1%; margin-bottom: 1%">
+                                                        <label style="text-align: right; margin-right: 1%; margin-bottom: 1%">Total Price : <span id="totalPrice"></span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="table-responsive">
+                                                        <center>
+                                                            <table class="table table-striped table-bordered table-hover" id="checkout-result-dataTables">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th>No.</th>
+                                                                    <th>Image</th>
+                                                                    <th>Product Name</th>
+                                                                    <th>Price per unit</th>
+                                                                    <th>Total Unit</th>
+                                                                    <th>Product Total Price</th>
+                                                                </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                                <!-- /.row -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                            <!-- .panel-body -->
+                            <div id="notificationPanelsHere" class="panel-body">
+                            </div>
+                            <!-- .panel-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <!-- jQuery -->
+    <script src="../js/jquery.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="../js/sweetalert.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../js/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="../js/dataTables/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables/dataTables.bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/startmin.js"></script>
+
+    <!-- Common Service -->
+    <script src="../js/service/csrfToken.js"></script>
+    <script src="../js/service/menu.js"></script>
+
+    <!-- Service -->
+    <script src="../js/service/order/table.js"></script>
+    <script src="../js/service/order/checkout.js"></script>
+</html>

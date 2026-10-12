@@ -1,0 +1,169 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+    <head>
+        <style>
+            .panel {
+                width: 90%
+            }
+            #mainPanel {
+                padding-top: 3%
+            }
+        </style>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title tiles:fragment="title">Dashboard</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- MetisMenu CSS -->
+        <link href="../css/metisMenu.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="../css/startmin.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <label class="navbar-brand" >Simple Cashier</label>
+            </div>
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <ul class="nav navbar-nav navbar-right navbar-top-links">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                        <i class="fa fa-user fa-fw"></i> <span id="navUser"></span> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <aside class="sidebar navbar-default" role="navigation">
+            <div class="sidebar-nav navbar-collapse active">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <label id="greetingName">Hello, there!</label>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <div style="padding-top: 5%; padding-left: 25%">
+            <div class="row">
+                <div>
+                    <div id="mainPanel">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Total Sales in 6 months</h3>
+                            </div>
+                            <h1 class="panel-body" id="totalSale6Months" style="font-weight: bold">
+                            </h1>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Today's Total Sales (All Users)</h3>
+                            </div>
+                            <h1 class="panel-body" id="totalSaleToday" style="font-weight: bold">
+                            </h1>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" id="currentUserSaleInfo">Today's User Sales </h3>
+                            </div>
+                            <h1 class="panel-body" id="currentUserSale" style="font-weight: bold">
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div id="orderHeading" class="panel-heading">
+                        Product Order Information
+                    </div>
+                    <div class="panel-body">
+                        <div id="tablePanel">
+                            <div class="col-lg-6">
+                                <p>
+                                    <label>Today's Product Sale </label>
+                                    <span id="todayProductSalesTotal"></span>
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="product-sale-today-dataTables" style="text-align: left; vertical-align: middle;">
+                                        <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Product Name</th>
+                                            <th>Total Unit Sale</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>
+                                    <label>Product Sales in last 30 days </label>
+                                    <span id="monthlyProductSalesTotal"></span>
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="product-sale-month-dataTables" style="text-align: left; vertical-align: middle;">
+                                        <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Product Name</th>
+                                            <th>Total Unit Sale</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="../js/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../js/metisMenu.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../js/startmin.js"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="../js/dataTables/jquery.dataTables.min.js"></script>
+        <script src="../js/dataTables/dataTables.bootstrap.min.js"></script>
+
+        <script src="../js/service/menu.js"></script>
+        <script src="../js/service/dashboard.js"></script>
+    </body>
+</html>
